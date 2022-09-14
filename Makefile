@@ -1,6 +1,6 @@
 DOCKER_COMPOSE=./compose.yml
 
-docker/up: docker/build
+docker/up:
 	docker compose -f $(DOCKER_COMPOSE) up -d --build
 
 docker/start:
