@@ -18,3 +18,6 @@ docker/logs:
 rails/migrate:
 	docker compose exec rails rails db:migrate
 	docker compose exec rails bundle exec rails ridgepole:apply
+
+rails/console:
+	docker compose exec rails rails console

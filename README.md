@@ -62,3 +62,11 @@ $ make docker/down
 ```bash
 $ make rails/migrate
 ```
+
+FYI:
+</br>
+Run rails console
+
+```bash
+$ make rails/console
+```
