@@ -10,5 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_14_113342) do
+  create_table "glueby_system_informations", force: :cascade do |t|
+    t.string "info_key"
+    t.string "info_value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["info_key"], name: "index_glueby_system_informations_on_info_key", unique: true
+  end
+
 end
