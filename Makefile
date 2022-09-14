@@ -1,7 +1,7 @@
 DOCKER_COMPOSE=./compose.yml
 
 docker/up: docker/build
-	docker compose -f $(DOCKER_COMPOSE) up -d
+	docker compose -f $(DOCKER_COMPOSE) up -d --build
 
 docker/start:
 	docker compose -f $(DOCKER_COMPOSE) start
@@ -12,5 +12,5 @@ docker/stop:
 docker/down:
 	docker compose -f $(DOCKER_COMPOSE) down --volumes
 
-docker/build:
-	docker build -t monoiroha -f './Dockerfile' .
+docker/logs:
+	docker compose logs -f
