@@ -1,0 +1,18 @@
+AllCops:
+  TargetRubyVersion: 3.1.2
+  TargetRailsVersion: 7.0.4
+  Exclude:
+    - "vendor/**/*"
+    - "node_modules/**/*"
+    - "bin/**/*"
+    - "public/**/*"
+    - "tmp/**/*"
+    - "log/**/*"
+
+# Missing top-level documentation comment for...
+Documentation:
+  Enabled: false
+
+# Missing frozen string literal comment.
+Style/FrozenStringLiteralComment:
+  Enabled: false
