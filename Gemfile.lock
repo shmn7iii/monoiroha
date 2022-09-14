@@ -93,6 +93,10 @@ GEM
       reline (>= 0.3.1)
     diffy (3.4.2)
     digest (3.1.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     ecdsa (1.2.0)
     erubi (1.11.0)
     eventmachine (1.2.7)
@@ -281,6 +285,7 @@ DEPENDENCIES
   capybara
   cssbundling-rails
   debug
+  dotenv-rails
   glueby
   jbuilder
   jsbundling-rails

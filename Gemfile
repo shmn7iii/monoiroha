@@ -6,6 +6,7 @@ gem 'rails', '~> 7.0.4'
 
 gem 'bootsnap', require: false
 gem 'cssbundling-rails'
+gem 'dotenv-rails'
 gem 'glueby'
 gem 'jbuilder'
 gem 'jsbundling-rails'
