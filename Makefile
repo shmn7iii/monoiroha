@@ -14,3 +14,7 @@ docker/down:
 
 docker/logs:
 	docker compose logs -f
+
+rails/migrate:
+	docker compose exec rails rails db:migrate
+	docker compose exec rails bundle exec rails ridgepole:apply

@@ -5,9 +5,11 @@
 - Ruby 3.1.2
 - Rails 7.0.4
 
-## Setup
+## Development
 
 ### Local
+
+**Setup**
 
 ```bash
 # create tapyrusd container
@@ -24,6 +26,19 @@ EOF
 
 # setup script for rails
 $ bin/setup
+
+# start server
+$ rails server
+```
+
+**Migrate**
+
+```bash
+# for glueby
+$ rails db:migrate
+
+# for others
+$ bundle exec rails ridgepole:apply
 ```
 
 ### Docker
@@ -40,4 +55,10 @@ $ make docker/stop
 
 # stop and remove containers *ALL VOLUMES REMOVED
 $ make docker/down
+```
+
+**Migrate**
+
+```bash
+$ make rails/migrate
 ```
