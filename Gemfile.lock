@@ -83,6 +83,7 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     childprocess (4.1.0)
+    choice (0.2.0)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     cssbundling-rails (1.1.1)
@@ -179,6 +180,11 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
+    rails-erd (1.7.2)
+      activerecord (>= 4.2)
+      activesupport (>= 4.2)
+      choice (~> 0.2.0)
+      ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.4.3)
       loofah (~> 2.3)
     railties (7.0.4)
@@ -213,6 +219,8 @@ GEM
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
+    ruby-graphviz (1.2.5)
+      rexml
     ruby-progressbar (1.11.0)
     rubyzip (2.3.2)
     selenium-webdriver (4.4.0)
@@ -295,6 +303,7 @@ DEPENDENCIES
   jsbundling-rails
   puma (~> 5.0)
   rails (~> 7.0.4)
+  rails-erd
   ridgepole
   rubocop
   rubocop-rails
