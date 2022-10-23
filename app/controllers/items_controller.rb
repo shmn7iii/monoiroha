@@ -14,7 +14,7 @@ class ItemsController < ApplicationController
     @address = buyer.glueby_wallet.internal_wallet.receive_address
     flash[:success] = 'Success!'
     redirect_to items_path
-  rescue StandardError
+  rescue ArgumentError
     flash[:danger] = 'Error!'
     redirect_to items_path
   end
