@@ -11,6 +11,6 @@ class CreateUtxo < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    add_index :glueby_utxos, [:txid, :index], unique: true
+    add_index :glueby_utxos, %i[txid index], unique: true
   end
 end

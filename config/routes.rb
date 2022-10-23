@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "items#index"
+  root 'items#index'
 
   resources :items, only: %i[index]
   resources :users, only: %i[index]

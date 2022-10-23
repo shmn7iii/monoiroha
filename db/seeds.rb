@@ -1,7 +1,7 @@
 12.times do
   g_wallet = Glueby::Wallet.create
   wallet = Wallet.create! { |u| u.id = g_wallet.id }
-  name  = Faker::Name.name
+  name = Faker::Name.name
   user = User.create!(name:, wallet_id: wallet.id)
   Glueby::Internal::RPC.client.generatetoaddress(1, g_wallet.internal_wallet.receive_address, ENV['AUTHORITY_KEY'])
 
