@@ -8,11 +8,10 @@ class UsersController < ApplicationController
   def vote
     voter = User.find(1) # XXX: 固定
     user = User.find(params[:id])
-    vote_token = voter.active_vote_token # XXX: 固定
-    amount = vote_token&.amount || 0 # XXX: 固定
 
-    # ほんとはキーワード引数にしたい
-    VoteUserService.call(user, vote_token, amount)
+    VoteUserService.call(user:,
+                         vote_token: vote_token = voter.active_vote_token, # XXX: 固定
+                         amount: vote_token&.amount || 0) # XXX: 固定
 
     @address = voter.glueby_wallet.internal_wallet.receive_address
     flash[:error] = 'Success!'

@@ -1,5 +1,5 @@
 class BaseService
-  def self.call(*args)
-    new(*args).call
+  def self.call(**args)
+    new(**args).call
   end
 end

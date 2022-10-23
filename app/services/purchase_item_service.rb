@@ -1,12 +1,13 @@
 class PurchaseItemService < BaseService
-  def initialize(item, buyer)
+  def initialize(item:, buyer:)
     @item = item
     @buyer = buyer
   end
 
   def call
-    amount = @item.vote_amount
+    raise ArgumentError if @item.nil? || @buyer.nil?
 
+    amount = @item.vote_amount
     vote_tokens = Glueby::Contract::Token.issue!(issuer: @buyer.glueby_wallet,
                                                  token_type: Tapyrus::Color::TokenTypes::NON_REISSUABLE,
                                                  amount:)

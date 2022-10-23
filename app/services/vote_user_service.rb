@@ -1,12 +1,12 @@
 class VoteUserService < BaseService
-  def initialize(user, vote_token, amount)
+  def initialize(user: nil, vote_token: nil, amount: 0)
     @user = user
     @vote_token = vote_token
     @amount = amount
   end
 
   def call
-    raise ArgumentError, 'missing vote-token' if @vote_token.nil? || @amount.zero?
+    raise ArgumentError if @user.nil? || @vote_token.nil? || @amount.zero?
 
     @vote_token.tapyrus_token.transfer!(sender: @vote_token.user.glueby_wallet,
                                         receiver_address: @user.glueby_wallet.internal_wallet.receive_address,

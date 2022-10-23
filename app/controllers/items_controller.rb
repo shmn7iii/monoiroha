@@ -9,8 +9,7 @@ class ItemsController < ApplicationController
     item = Item.find(params[:id])
     buyer = User.find(1) # XXX: 固定
 
-    # ほんとはキーワード引数にしたい
-    PurchaseItemService.call(item, buyer)
+    PurchaseItemService.call(item:, buyer:)
 
     @address = buyer.glueby_wallet.internal_wallet.receive_address
     flash[:success] = 'Success!'
