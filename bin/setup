@@ -13,9 +13,11 @@ FileUtils.chdir APP_ROOT do
   system('bundle check') || system!('bundle install')
 
   puts "\n== Preparing database =="
+  system! 'bin/rails db:drop'
   system! 'bin/rails db:create'
   system! 'bin/rails db:migrate'
   system! 'bin/rails ridgepole:apply'
+  system! 'bin/rails db:seed'
 
   puts "\n== Compiling assets =="
   system! 'bin/rails assets:precompile'
