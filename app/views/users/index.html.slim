@@ -11,5 +11,7 @@ h2 ユーザー一覧
             h5.card-title
               = user.name
             p.card-text
-              = "得票数: #{user.votes.size}"
+              = "得票数: #{user.number_of_votes}"
+            / 投票者も欲しい気がする（実際の実装がどうなるかは置いておいて少なくともデモでは
+              / その場合ログインユーザーが誰なのか明確にしたい
             = link_to '投票', "/users/#{user.id}/vote", class: 'btn btn-block btn-outline-primary btn-sm'
