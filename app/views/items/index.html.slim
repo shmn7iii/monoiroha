@@ -1,0 +1,22 @@
+h4 商品一覧
+
+= render 'shared/tokens'
+
+- @items.each_slice(4) do |slice_items|
+  .row.my-4
+    - slice_items.each do |item|
+      .col-md-3
+        .card
+          .card-body
+            h5.card-title
+              = item.title
+            p.card-text
+              = item.description
+            .card-text
+              = item.price
+            p.card-text
+              = item.user.name
+            - if item.display
+              = link_to '購入', "/items/#{item.id}/purchase", class: 'btn btn-block btn-outline-primary btn-sm'
+            - else
+              .btn.btn-outline-secondary.btn-block.btn-sm.disabled 購入済み

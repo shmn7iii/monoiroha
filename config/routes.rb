@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root "items#index"
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :items, only: %i[index]
+  resources :users, only: %i[index]
+
+  get '/items/:id/purchase', to: 'items#purchase'
+  get '/users/:id/vote',     to: 'users#vote'
 end

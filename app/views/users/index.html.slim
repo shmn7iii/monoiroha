@@ -1,0 +1,15 @@
+h2 ユーザー一覧
+
+= render 'shared/tokens'
+
+- @users.each_slice(4) do |slice_users|
+  .row.my-4
+    - slice_users.each do |user|
+      .col-md-3
+        .card
+          .card-body
+            h5.card-title
+              = user.name
+            p.card-text
+              = "得票数: #{user.votes.size}"
+            = link_to '投票', "/users/#{user.id}/vote", class: 'btn btn-block btn-outline-primary btn-sm'

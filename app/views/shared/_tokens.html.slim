@@ -1,0 +1,18 @@
+- if User.find(1).vote_tokens.exists?
+  .accordion.my-4
+    .accordion-item
+      .accordion-header[id="headingOne"]
+        button.accordion-button[type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"]
+          Accordion
+            = "所持トークン総数: #{User.find(1).vote_tokens.pluck(:amount).sum}"
+      .accordion-collapse.collapse.show[id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample"]
+        .accordion-body
+          ul
+            - User.find(1).vote_tokens.where(amount: 1..).each do |token|
+              li
+                = "Item:「#{token.item.title}」"
+                ul
+                  li
+                    = "TokenID: #{token.token_id}"
+                  li
+                    = "Amount: #{token.amount}"
