@@ -30,23 +30,43 @@ EOF
 $ bin/setup
 
 # start server
-$ rails server
+$ bin/rails server
 ```
 
 **Migrate**
 
 ```bash
 # for glueby
-$ rails db:migrate
+$ bin/rails db:migrate
 
 # for others
-$ bundle exec rails ridgepole:apply
+$ bin/bundle exec bin/rails ridgepole:apply
 ```
 
 ### Docker
 
+**Setup**
+
 ```bash
-# create containers
+# set .env
+# if you use default tapyrusd container, auth-key is 'cUJN5RVzYWFoeY8rUztd47jzXCu1p57Ay8V7pqCzsBD3PEXN7Dd4'
+$ cat << EOF > .env
+TAPYRUS_RPC_SCHEMA=http
+TAPYRUS_RPC_HOST=tapyrusd
+TAPYRUS_RPC_PORT=12381
+TAPYRUS_RPC_USER=rpcuser
+TAPYRUS_RPC_PASSWORD=rpcpassword
+AUTHORITY_KEY=<auth-key>
+EOF
+
+# create containers and run bin/setup
+$ make docker/up
+```
+
+**Make commands**
+
+```bash
+# create containers and run bin/setup
 $ make docker/up
 
 # start containers
@@ -57,18 +77,13 @@ $ make docker/stop
 
 # stop and remove containers *ALL VOLUMES REMOVED
 $ make docker/down
-```
 
-**Migrate**
-
-```bash
+# migrate
 $ make rails/migrate
-```
 
-FYI:
-</br>
-Run rails console
-
-```bash
+# run rails console
 $ make rails/console
+
+# reset rails database
+$ make rails/reset
 ```
