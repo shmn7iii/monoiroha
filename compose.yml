@@ -5,7 +5,7 @@ services:
     env_file:
       - .env
     volumes:
-      - .:/app
+      - .:/monoiroha
     ports:
       - "3000:3000"
     depends_on:

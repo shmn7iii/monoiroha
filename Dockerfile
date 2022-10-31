@@ -6,16 +6,14 @@ RUN apt-get update \
   && apt-get clean \
   && npm install --global yarn \
   && rm -rf /var/lib/apt/lists/* \
-  &&  mkdir /monoiroha
+  && mkdir /monoiroha
 
 ENV APP_ROOT /monoiroha
 WORKDIR $APP_ROOT
 
-ADD ./Gemfile $APP_ROOT/Gemfile
-ADD ./Gemfile.lock $APP_ROOT/Gemfile.lock
-
+COPY Gemfile $APP_ROOT/Gemfile
+COPY Gemfile.lock $APP_ROOT/Gemfile.lock
 RUN bundle install
-ADD . $APP_ROOT
 
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
