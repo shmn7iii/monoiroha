@@ -1,0 +1,18 @@
+- if User.find(1).active_vote_tokens_amount
+  .accordion.my-4
+    .accordion-item
+      .accordion-header[id="headingOne"]
+        button.accordion-button[type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"]
+          Accordion
+            = "所持トークン総数: #{User.find(1).active_vote_tokens_amount}"
+      .accordion-collapse.collapse.show[id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample"]
+        .accordion-body
+          ul
+            - User.find(1).active_vote_tokens.each do |token|
+              li
+                = "Item:「#{token.item.title}」"
+                ul
+                  li
+                    = "TokenID: #{token.token_id}"
+                  li
+                    = "Amount: #{token.amount}"

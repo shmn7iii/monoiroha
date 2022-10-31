@@ -1,3 +1,41 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+create_table :wallets, id: :string, comment: 'monoiroha wallet'  do |t|
+
+  t.timestamps null: false
+end
+
+create_table :users, comment: 'ユーザー'  do |t|
+  t.references :wallet, null: false, index: { unique: true }, foreign_key: { to_table: :wallets }, type: :string
+  t.string :name, null: false
+
+  t.timestamps null: false
+end
+
+create_table :items, comment: '商品'  do |t|
+  t.references :user, null: false, unsigned: true, foreign_key: { to_table: :users }
+  t.string :title, null: false
+  t.string :description, null: true
+  t.unsigned_integer :price, null: false
+  t.boolean :display, null: false
+
+  t.timestamps null: false
+end
+
+create_table :vote_tokens, comment: '投票用トークン'  do |t|
+  t.references :user, null: false, unsigned: true, foreign_key: { to_table: :users }
+  t.references :item, null: false, unsigned: true, foreign_key: { to_table: :items }
+  t.string :token_id, null: false
+  t.unsigned_integer :amount, null: false
+
+  t.timestamps null: false
+end
+
+
+create_table :votes, comment: '投票（１レコード/１票）' do |t|
+  t.references :vote_token, null: false, unsigned: true, foreign_key: { to_table: :vote_tokens }
+  t.references :user, null: false, unsigned: true, foreign_key: { to_table: :users }, comment: "投票先ユーザー"
+
+  t.timestamps null: false
+end

@@ -2,12 +2,8 @@ services:
   rails:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
-    environment:
-      TAPYRUS_RPC_SCHEMA: 'http'
-      TAPYRUS_RPC_HOST: 'tapyrusd'
-      TAPYRUS_RPC_PORT: 12381
-      TAPYRUS_RPC_USER: 'rpcuser'
-      TAPYRUS_RPC_PASSWORD: 'rpcpassword'
+    env_file:
+      - .env
     volumes:
       - .:/app
     ports:
