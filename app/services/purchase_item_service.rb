@@ -17,5 +17,7 @@ class PurchaseItemService < BaseService
 
     VoteToken.create!(token_id:, amount:, user_id: @buyer.id, item_id: @item.id)
     @item.update!(display: false)
+
+    vote_tokens[1][0].txid
   end
 end
