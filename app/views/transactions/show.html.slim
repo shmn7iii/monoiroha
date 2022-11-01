@@ -1,0 +1,72 @@
+h4 トランザクション詳細
+
+.card.my-4
+  .card-header.bg-transparent
+    h4.card-title
+      = @transaction.txid
+    p.card-text
+      | Size: #{@transaction.size}
+  .card-body.px-5
+    - @transaction.in.each_with_index do |vin, n|
+      h5.card-title
+        | Input [No.#{n}]
+      table.table
+        tbody
+        - if @transaction.coinbase_tx?
+          tr
+            td This is coinbase transaction.
+        - else
+          tr
+            td[style="width: 9%;"]
+              | TxID
+            td
+              = vin.out_point.txid
+          tr
+            td[style="width: 9%;"]
+              | Index
+            td
+              = vin.out_point.index
+
+    - @transaction.out.each_with_index do |vout, n|
+      h5.card-title
+        | Output [No.#{n}]
+      table.table
+        tbody
+        - if vout.script_pubkey.colored?
+          tr
+            td[style="width: 9%;"]
+              | Type
+            - type = vout.script_pubkey.color_id.type.to_s(16)
+            - case type
+            - when 'c1'
+              td
+                | Reissuable Token
+            - when 'c2'
+              td
+                | Non-Reissuable Token
+            - when 'c3'
+              td
+                | Non-Fungible Token
+          tr
+            td[style="width: 9%;"]
+              | Color
+            td
+              = type + vout.script_pubkey.color_id.payload.bth
+        - else
+          tr
+            td[style="width: 9%;"]
+              | Type
+            td
+              | TPC
+        tr
+          td[style="width: 9%;"]
+            | Value
+          td
+            = vout.value
+
+    details
+      summary
+        | Detail
+      .card.card-body
+        pre
+          = @transaction_json
