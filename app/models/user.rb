@@ -28,13 +28,4 @@ class User < ApplicationRecord
   def number_of_votes
     votes.size
   end
-  
-  # おすすめ商品
-  def show_pick_up
-    users = []
-    self.each do |user|
-      users.push user.number_of_votes
-    end
-    return users
-  end
 end
