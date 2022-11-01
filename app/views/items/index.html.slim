@@ -1,9 +1,11 @@
 
-= render 'top_item'
+= render 'shared/tokens'
+
+h4 ピックアップ商品
+.row.my-4
+  = render 'top_item'
 
 h4 商品一覧
-
-= render 'shared/tokens'
 
 - @items.each_slice(4) do |slice_items|
   .row.my-4
