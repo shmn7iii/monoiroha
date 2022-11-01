@@ -13,6 +13,7 @@
                 = "Item:「#{token.item.title}」"
                 ul
                   li
-                    = "TokenID: #{token.token_id}"
+                    | TokenID:
+                    = link_to token.token_id, transaction_path(token.token_id)
                   li
                     = "Amount: #{token.amount}"
