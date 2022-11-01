@@ -1,3 +1,6 @@
+
+= render 'top_item'
+
 h4 商品一覧
 
 = render 'shared/tokens'
@@ -20,3 +23,4 @@ h4 商品一覧
               = link_to '購入', "/items/#{item.id}/purchase", class: 'btn btn-block btn-outline-primary btn-sm'
             - else
               .btn.btn-outline-secondary.btn-block.btn-sm.disabled 購入済み
+
