@@ -2,6 +2,8 @@ class PurchaseItemService < BaseService
   def initialize(item:, buyer:)
     @item = item
     @buyer = buyer
+
+    super()
   end
 
   def call
