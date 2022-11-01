@@ -3,6 +3,8 @@ class VoteUserService < BaseService
     @user = user
     @vote_token = vote_token
     @amount = amount
+
+    super()
   end
 
   def call
