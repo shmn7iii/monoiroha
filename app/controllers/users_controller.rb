@@ -14,7 +14,7 @@ class UsersController < ApplicationController
                          amount: vote_token&.amount || 0) # XXX: 固定
 
     @address = voter.glueby_wallet.internal_wallet.receive_address
-    flash[:error] = 'Success!'
+    flash[:success] = 'Success!'
     redirect_to users_path
   rescue ArgumentError
     flash[:danger] = 'Error!'
