@@ -1,0 +1,30 @@
+.d-flex.justify-content-center
+  .spinner-border.m-5[role="status" style="width: 3rem; height: 3rem;"]
+    span.sr-only
+.d-flex.justify-content-center
+  h4
+    | 投票を処理中
+.d-flex.justify-content-center
+  h6#progress-text
+    | 準備中... 1/4
+
+// 遷移用ボタン（非表示）
+= button_to '', { controller: 'votes', action: 'create' }, { method: :post, params: { user_id: @user_id }, id: "transition", style: "display: none;"}
+
+// 遷移処理
+javascript:
+  // 1秒後にボタン押下
+  window.setTimeout(() => {
+      document.getElementById('transition').click();
+      document.getElementById('progress-text').innerHTML = "トークンを移送中... 2/4";
+  }, 1000);
+
+  // ダミー
+  window.setTimeout(() => {
+      document.getElementById('progress-text').innerHTML = "ブロックを確定中... 3/4";
+  }, 7000);
+
+  // ダミー
+  window.setTimeout(() => {
+      document.getElementById('progress-text').innerHTML = "処理中... 4/4";
+  }, 14000);

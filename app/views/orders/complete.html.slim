@@ -1,0 +1,28 @@
+h2 購入完了
+
+.card.my-4
+  .card-body.px-5
+    h5.card-title
+      = @item.title
+    table.table
+      tbody
+        tr
+          td[style="width: 15%;"]
+            | 価格
+          td
+            = @item.price
+        tr
+          td[style="width: 15%;"]
+            | 購入トランザクション
+          td
+            = link_to @txid, transaction_path(@txid)
+        tr
+          td[style="width: 15%;"]
+            | 購入者トークン
+          td
+            = @item.vote_token.token_id
+        tr
+          td[style="width: 15%;"]
+            | 購入者トークン数量
+          td
+            = @item.vote_amount
