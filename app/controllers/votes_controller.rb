@@ -14,7 +14,6 @@ class VotesController < ApplicationController
                                 amount: vote_token&.amount || 0) # XXX: 固定
 
     @address = voter.glueby_wallet.internal_wallet.receive_address
-    flash[:success] = 'Success!'
     redirect_to votes_complete_path(first_vote_id: vote[1][0].id, txid: vote[0], vote_amount: vote[1].size)
   rescue ArgumentError
     flash[:danger] = 'Error!'
