@@ -1,7 +1,8 @@
 header.p-3.mb-3.border-bottom
   div.d-flex.flex-wrap.align-items-center.justify-content-center.justify-content-lg-start
-    h3
-      = link_to "monoiroha", root_path, class: "d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none"
+    
+    = link_to image_tag("monoiroha.jpeg", :width=>148, :height=>34), root_path
+
     ul.nav.col-12.col-lg-auto.me-lg-auto.mb-2.justify-content-center.mb-md-0
       li
         = link_to "商品一覧", items_path, class: "nav-link px-4 link-dark"
