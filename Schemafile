@@ -14,7 +14,8 @@ create_table :items, comment: '商品' do |t|
   t.string :title, null: false
   t.string :description, null: true
   t.unsigned_integer :price, null: false
-  t.boolean :display, null: false
+  t.string :txid, null: true
+  t.datetime :purchased_at, null: true
 
   t.timestamps null: false
 end

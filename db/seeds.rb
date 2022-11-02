@@ -12,8 +12,7 @@
     Item.create!(user_id: user.id,
                  title:,
                  description:,
-                 price:,
-                 display: true)
+                 price:)
   end
 end
 
