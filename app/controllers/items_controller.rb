@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
-    @users = User.order_voted
+    @pickup_users = User.order_voted
   end
 
   def purchase
