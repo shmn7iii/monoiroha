@@ -1,4 +1,4 @@
-h2 ユーザー一覧
+h4 ユーザー一覧
 
 = render 'shared/tokens'
 
@@ -11,7 +11,7 @@ h2 ユーザー一覧
             h5.card-title
               = user.name
             p.card-text
-              = "得票数: #{user.number_of_votes}"
+              = "得票数: #{user.number_of_voteds}"
             / 投票者も欲しい気がする（実際の実装がどうなるかは置いておいて少なくともデモでは
               / その場合ログインユーザーが誰なのか明確にしたい
-            = link_to '投票', votes_progress_path(user_id: user.id), class: 'btn btn-block btn-outline-primary btn-sm'
+            = link_to '投票', votes_progress_path(votee_id: user.id), class: 'btn btn-block btn-outline-primary btn-sm'
