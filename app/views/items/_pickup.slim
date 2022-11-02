@@ -1,5 +1,5 @@
 - @pickup_users.slice(0..3).each do |user|
-  - item = Item.find_by(user_id: user.id)
+  - item = Item.on_sale.find_by(user_id: user.id)
   .col-md-3
     .card
       .card-body
@@ -11,8 +11,4 @@
           = item.price
         p.card-text
           = item.user.name
-        - if item.display
-          = link_to '購入', orders_progress_path(item_id: item.id), class: 'btn btn-block btn-outline-primary btn-sm'
-        - else
-          .btn.btn-outline-secondary.btn-block.btn-sm.disabled 購入済み
-
+        = link_to '購入', "/items/#{item.id}/purchase", class: 'btn btn-block btn-outline-primary btn-sm'

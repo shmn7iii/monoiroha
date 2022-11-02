@@ -22,7 +22,7 @@ h4 商品一覧
               = item.price
             p.card-text
               = item.user.name
-            - if item.display
+            - if item.purchased_at.nil?
               = link_to '購入', orders_progress_path(item_id: item.id), class: 'btn btn-block btn-outline-primary btn-sm'
             - else
               .btn.btn-outline-secondary.btn-block.btn-sm.disabled 購入済み
