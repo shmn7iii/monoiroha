@@ -1,3 +1,5 @@
+Faker::Config.locale = :ja
+
 12.times do
   g_wallet = Glueby::Wallet.create
   wallet = Wallet.create! { |u| u.id = g_wallet.id }
