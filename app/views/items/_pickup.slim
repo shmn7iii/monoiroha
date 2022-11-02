@@ -11,4 +11,4 @@
           = item.price
         p.card-text
           = item.user.name
-        = link_to '購入', "/items/#{item.id}/purchase", class: 'btn btn-block btn-outline-primary btn-sm'
+        = link_to '購入', orders_progress_path(item_id: item.id), class: 'btn btn-block btn-outline-primary btn-sm'
