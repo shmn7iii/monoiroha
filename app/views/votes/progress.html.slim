@@ -9,7 +9,7 @@
     | 準備中... 1/4
 
 // 遷移用ボタン（非表示）
-= button_to '', { controller: 'votes', action: 'create' }, { method: :post, params: { user_id: @user_id }, id: "transition", style: "display: none;"}
+= button_to '', { controller: 'votes', action: 'create' }, { method: :post, params: { votee_id: @votee_id }, id: "transition", style: "display: none;"}
 
 // 遷移処理
 javascript:

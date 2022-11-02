@@ -8,24 +8,24 @@ h2 投票完了
           td[style="width: 15%;"]
             | 投票先
           td
-            = @first_vote.user.name
+            = @vote.votee.name
         tr
           td[style="width: 15%;"]
             | 投票者
           td
-            = @first_vote.vote_token.user.name
+            = @vote.voter.name
         tr
           td[style="width: 15%;"]
             | 投票トランザクション
           td
-            = link_to @txid, transaction_path(@txid)
+            = link_to @vote.txid, transaction_path(@vote.txid)
         tr
           td[style="width: 15%;"]
             | 購入者トークン
           td
-            = @first_vote.vote_token.token_id
+            = @vote.vote_token.token_id
         tr
           td[style="width: 15%;"]
             | 投票量
           td
-            = @vote_amount
+            = @vote.amount
