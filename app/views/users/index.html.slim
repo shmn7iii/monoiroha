@@ -1,6 +1,4 @@
-h4 ユーザー一覧
-
-= render 'shared/tokens'
+h4 クリエイター総選挙
 
 - @users.each_slice(4) do |slice_users|
   .row.my-4
@@ -12,6 +10,4 @@ h4 ユーザー一覧
               = user.name
             p.card-text
               = "得票数: #{user.number_of_voteds}"
-            / 投票者も欲しい気がする（実際の実装がどうなるかは置いておいて少なくともデモでは
-              / その場合ログインユーザーが誰なのか明確にしたい
             = link_to '投票', votes_progress_path(votee_id: user.id), class: 'btn btn-block btn-outline-primary btn-sm'
