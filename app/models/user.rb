@@ -28,4 +28,9 @@ class User < ApplicationRecord
   def number_of_votes
     votes.size
   end
+
+  #投票が多い順
+  def self.order_voted
+    includes(:votes).sort {|a,b| b.votes.size <=> a.votes.size}
+  end
 end
