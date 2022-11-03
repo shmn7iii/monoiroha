@@ -12,7 +12,13 @@ class OrdersController < ApplicationController
     item = PurchaseItemService.call(item:, buyer:)
 
     @address = buyer.glueby_wallet.internal_wallet.receive_address
-    redirect_to orders_complete_path(item_id: item.id)
+
+    # 本番環境用リダイレクト
+    if Rails.env.production?
+      redirect_to "https://monoiroha.shmn7iii.net/orders/complete?item_id=#{item.id}", allow_other_host: true
+    else
+      redirect_to orders_complete_path(item_id: item.id)
+    end
   rescue ArgumentError
     flash[:danger] = 'Error!'
     redirect_to items_path
