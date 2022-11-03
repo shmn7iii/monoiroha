@@ -1,0 +1,24 @@
+h4 所持トークン一覧
+
+.card.my-4
+  .card-header.bg-transparent
+    = "トークン総数: #{@active_vote_tokens_amount}"
+  .card-body
+    - if @active_vote_tokens_amount.zero?
+      | なし
+    - else
+      - @active_vote_tokens.each do |token|
+        h6
+          = token.item.title
+        table.table
+          tbody
+            tr
+              td[style="width: 10%;"]
+                | TokenID
+              td
+                = link_to token.token_id, transaction_path(token.token_id)
+            tr
+              td[style="width: 10%;"]
+                | Amount
+              td
+                = token.amount
