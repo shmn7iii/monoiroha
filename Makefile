@@ -31,18 +31,15 @@ rails/reset:
 	docker compose exec rails bin/rails db:seed
 	docker compose exec rails bin/rails restart
 
-prod:
-	DOCKER_COMPOSE=./compose.production.yml
-
-prod/docker/up: prod
-	docker compose -f $(DOCKER_COMPOSE) up -d --build
+prod/docker/up:
+	docker compose -f ./compose.production.yml up -d --build
 	docker compose exec rails bin/setup
 
-prod/docker/start: prod
-	docker compose -f $(DOCKER_COMPOSE) start
+prod/docker/start:
+	docker compose -f ./compose.production.yml start
 
-prod/docker/stop: prod
-	docker compose -f $(DOCKER_COMPOSE) stop
+prod/docker/stop:
+	docker compose -f ./compose.production.yml stop
 
-prod/docker/down: prod
-	docker compose -f $(DOCKER_COMPOSE) down --volumes
+prod/docker/down:
+	docker compose -f ./compose.production.yml down --volumes

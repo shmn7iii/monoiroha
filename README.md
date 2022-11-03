@@ -122,10 +122,10 @@ Uploading master.key to /home/ubuntu/monoiroha/config/master.key
 master.key                                                                                                          100%   32     1.1KB/s   00:00
 
 # setup container
-$ make prod/docker/up
+$ sudo make prod/docker/up
 
 # stop container
-$ make prod/docker/stop
+$ sudo make prod/docker/stop
 
 # setup systemd
 $ sudo cp monoiroha.service /etc/systemd/system/monoiroha.service
