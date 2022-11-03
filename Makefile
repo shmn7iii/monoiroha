@@ -31,9 +31,16 @@ rails/reset:
 	docker compose exec rails bin/rails db:seed
 	docker compose exec rails bin/rails restart
 
-prod/docker/up:
+prod/docker/setup:
 	docker compose -f ./compose.production.yml up -d --build
 	docker compose exec rails bin/setup
+	docker compose -f ./compose.production.yml stop
+	echo '==========================='
+	echo ''
+	echo 'Setup completed!'
+	echo 'Run `sudo make prod/docker/start`'
+	echo ''
+	echo '==========================='
 
 prod/docker/start:
 	docker compose -f ./compose.production.yml start

@@ -1,13 +1,13 @@
 services:
   rails:
     build: .
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s"
     env_file:
       - .env
     volumes:
       - .:/monoiroha
-    ports:
-      - "80:3000"
+      - public-data:/monoiroha/public
+      - tmp-data:/monoiroha/tmp
     depends_on:
       - tapyrusd
   tapyrusd:
@@ -18,5 +18,16 @@ services:
       - "12381:12381"
     volumes:
       - tapyrus:/var/lib/tapyrus
+  nginx:
+    build: ./config/nginx
+    volumes:
+      - public-data:/monoiroha/public
+      - tmp-data:/monoiroha/tmp
+    ports:
+      - 80:80
+    depends_on:
+      - rails
 volumes:
   tapyrus:
+  public-data:
+  tmp-data:
