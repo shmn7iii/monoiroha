@@ -30,3 +30,19 @@ rails/reset:
 	docker compose exec rails bin/bundle exec bin/rails ridgepole:apply
 	docker compose exec rails bin/rails db:seed
 	docker compose exec rails bin/rails restart
+
+prod:
+	DOCKER_COMPOSE=./compose.production.yml
+
+prod/docker/up: prod
+	docker compose -f $(DOCKER_COMPOSE) up -d --build
+	docker compose exec rails bin/setup
+
+prod/docker/start: prod
+	docker compose -f $(DOCKER_COMPOSE) start
+
+prod/docker/stop: prod
+	docker compose -f $(DOCKER_COMPOSE) stop
+
+prod/docker/down: prod
+	docker compose -f $(DOCKER_COMPOSE) down --volumes
