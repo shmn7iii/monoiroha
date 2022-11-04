@@ -10,7 +10,7 @@
           p.card-text
             = item.description.truncate(35) 
           .card-text
-            = "RHA #{@item.price.to_s(:delimited)}"
+            = "RHA #{item.price.to_s(:delimited)}"
           p.card-text
             = item.user.name
           = link_to '購入', orders_progress_path(item_id: item.id), class: 'btn btn-block btn-outline-primary btn-sm'
