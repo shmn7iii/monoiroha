@@ -2,7 +2,7 @@ h4 所持トークン一覧
 
 .card.my-4
   .card-header.bg-transparent
-    = "トークン総数: #{@active_vote_tokens_amount}"
+    = "トークン総数: #{@active_vote_tokens_amount.to_s(:delimited)}"
   .card-body
     - if @active_vote_tokens_amount.zero?
       | なし
@@ -21,4 +21,4 @@ h4 所持トークン一覧
               td[style="width: 10%;"]
                 | Amount
               td
-                = token.amount
+                = token.amount.to_s(:delimited)

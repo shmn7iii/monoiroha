@@ -12,4 +12,4 @@ header.py-3.mb-3.border-bottom
       = link_to vote_tokens_path, style: "text-decoration: none; color: black;" do
         = "Signed in as #{user_name} "
         br
-        = "所持トークン数: #{User.find(1).active_vote_tokens_amount}"
+        = "所持トークン数: #{User.find(1).active_vote_tokens_amount.to_s(:delimited)}"

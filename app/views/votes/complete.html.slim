@@ -28,4 +28,4 @@ h2 投票完了
           td[style="width: 15%;"]
             | 投票量
           td
-            = @vote.amount
+            = @vote.amount.to_s(:delimited)
