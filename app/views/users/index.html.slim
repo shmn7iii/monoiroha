@@ -9,5 +9,5 @@ h4 クリエイター総選挙
             h5.card-title
               = user.name
             p.card-text
-              = "得票数: #{user.number_of_voteds}"
+              = "得票数: #{user.number_of_voteds.to_s(:delimited)}"
             = link_to '投票', votes_progress_path(votee_id: user.id), class: 'btn btn-block btn-outline-primary btn-sm'

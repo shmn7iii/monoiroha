@@ -1,22 +1,22 @@
 h4 ピックアップ商品
 
-.row.my-4
-  = render 'pickup'
+= render 'pickup'
 
 h4 商品一覧
 
 - @items.each_slice(4) do |slice_items|
-  .row.my-4
+  .row
     - slice_items.each do |item|
       .col-md-3
-        .card
+        .card.my-3
+          = image_tag "#{item.id}.jpg", height: 300, style: "object-fit: cover"
           .card-body
             h5.card-title
               = item.title
             p.card-text
-              = item.description
+              = item.description.truncate(35) 
             .card-text
-              = item.price
+              = "RHA #{item.price.to_s(:delimited)}"
             p.card-text
               = item.user.name
             - if item.purchased_at.nil?
