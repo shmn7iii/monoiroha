@@ -1,6 +1,5 @@
 .row
-  - @pickup_users.slice(0..3).each do |user|
-    - item = Item.on_sale.find_by(user_id: user.id)
+  - @pickup_items.slice(0..3).each do |item|
     .col-md-3
       .card.my-3
         = image_tag "#{item.id}.jpg", height: 300, style: "object-fit: cover"

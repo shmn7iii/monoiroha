@@ -1,6 +1,11 @@
 class ItemsController < ApplicationController
   def index
     @items = Item.all
-    @pickup_users = User.joins(:items).group(:id).having('COUNT(items.id) >= 1').order_voted
+    @pickup_items = []
+    User.order_voted.each do |user|
+      next if user.items.on_sale.empty?
+        
+      @pickup_items << user.items.on_sale[0]
+    end
   end
 end
