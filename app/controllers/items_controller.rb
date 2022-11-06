@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   def index
-    @items = Item.all
+    @items = Item.where.not(user_id: 999)
     @pickup_items = []
     User.order_voted.each do |user|
       next if user.items.on_sale.empty?

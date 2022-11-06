@@ -64,5 +64,14 @@ n = 0
   end
 end
 
+# create dummy vote
+dummy_user = create_user(name: 'dummy')
+dummy_user.update!(id: 999)
+2.upto(13) do |i|
+  item = Item.create!(title: 'dummy', user: dummy_user, price: 1, txid: 'dummy', purchased_at: Time.current)
+  vote_token = VoteToken.create!(user: dummy_user, item:, token_id: 'dummy', amount: 1)
+  Vote.create!(votee: User.find(i), voter: dummy_user, vote_token:, amount: rand(50..300), txid: 'dummy')
+end
+
 # start block syncer
 `rails glueby:block_syncer:start`
