@@ -9,7 +9,7 @@
     | 購入を処理中... 1/4
 
 // 遷移用ボタン（非表示）
-= button_to '', { controller: 'orders', action: 'create' }, { method: :post, params: { item_id: @item_id }, id: "transition", style: "display: none;"}
+= button_to '', { controller: 'orders', action: 'create' }, { method: :post, params: { item_id: @item.id }, id: "transition", style: "display: none;"}
 
 // 遷移処理
 javascript:
