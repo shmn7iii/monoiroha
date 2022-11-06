@@ -1,0 +1,13 @@
+[Unit]
+Description=monoiroha
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/home/ubuntu/monoiroha
+ExecStart=/usr/bin/make prod/docker/start docker/logs
+ExecStop=/usr/bin/make prod/docker/stop
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
