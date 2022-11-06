@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   helper_method :user_name
+
   private
 
   def generate_block
@@ -10,7 +11,6 @@ class ApplicationController < ActionController::Base
   end
 
   def user_name
-    name = User.find(1).name
-    return name
+    User.find(1).name
   end
 end
