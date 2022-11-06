@@ -12,7 +12,6 @@ class UsersController < ApplicationController
     VoteUserService.call(user:,
                          vote_token: vote_token = voter.active_vote_token, # XXX: 固定
                          amount: vote_token&.amount || 0) # XXX: 固定
-
     @address = voter.glueby_wallet.internal_wallet.receive_address
     flash[:error] = 'Success!'
     redirect_to users_path
