@@ -10,4 +10,9 @@ h4 クリエイター総選挙
               = user.name
             p.card-text
               = "得票数: #{user.number_of_voteds.to_s(:delimited)}"
+            - if user.voteds.where(voter_id: User.find(1).id).pluck(:amount).sum.zero?
+
+            - else
+              p.card-text
+                = "#{user.voteds.where(voter_id: User.find(1).id).pluck(:amount).sum}票投票しました"
             = link_to '投票', votes_progress_path(votee_id: user.id), class: 'btn btn-block btn-outline-primary btn-sm'
