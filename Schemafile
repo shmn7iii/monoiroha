@@ -31,7 +31,7 @@ end
 
 create_table :votes, comment: '投票' do |t|
   t.unsigned_integer :votee_id, null: false, comment: '投票されるユーザー'
-  t.unsigned_integer :voter_id, null: false, comment: '投票するユーザー）'
+  t.unsigned_integer :voter_id, null: false, comment: '投票するユーザー'
   t.references :vote_token, null: false, unsigned: true, foreign_key: { to_table: :vote_tokens },
                             comment: '投票に使うトークン'
   t.unsigned_integer :amount, null: false, comment: '投票数'
