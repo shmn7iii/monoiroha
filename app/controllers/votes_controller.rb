@@ -23,7 +23,11 @@ class VotesController < ApplicationController
     end
   rescue ArgumentError
     flash[:danger] = 'Error!'
-    redirect_to users_path
+    if Rails.env.production?
+      redirect_to 'https://monoiroha.shmn7iii.net/users', allow_other_host: true
+    else
+      redirect_to users_path
+    end
   end
 
   def complete
