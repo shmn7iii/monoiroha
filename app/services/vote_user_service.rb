@@ -1,17 +1,23 @@
 class VoteUserService < BaseService
-  def initialize(user: nil, vote_token: nil, amount: 0)
-    @user = user
+  def initialize(votee: nil, voter: nil, vote_token: nil, amount: 0)
+    @votee = votee
+    @voter = voter
     @vote_token = vote_token
     @amount = amount
+
+    super()
   end
 
   def call
-    raise ArgumentError if @user.nil? || @vote_token.nil? || @amount.zero?
+    raise ArgumentError if @votee.nil? || @voter.nil? || @vote_token.nil? || @amount.zero?
 
-    @vote_token.tapyrus_token.transfer!(sender: @vote_token.user.glueby_wallet,
-                                        receiver_address: @user.glueby_wallet.internal_wallet.receive_address,
-                                        amount: @amount)
-    @amount.times { Vote.create!(vote_token: @vote_token, user_id: @user.id) }
+    trnsfr = @vote_token.tapyrus_token.transfer!(sender: @voter.glueby_wallet,
+                                                 receiver_address: @votee.glueby_wallet.internal_wallet.receive_address,
+                                                 amount: @amount)
+
+    vote = Vote.create!(votee: @votee, voter: @voter, vote_token: @vote_token, amount: @amount, txid: trnsfr[1].txid)
     @vote_token.update!(amount: 0)
+
+    vote
   end
 end

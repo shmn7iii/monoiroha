@@ -2,6 +2,8 @@ class PurchaseItemService < BaseService
   def initialize(item:, buyer:)
     @item = item
     @buyer = buyer
+
+    super()
   end
 
   def call
@@ -14,6 +16,9 @@ class PurchaseItemService < BaseService
     token_id = 'c2' + vote_tokens[0].color_id.payload.bth
 
     VoteToken.create!(token_id:, amount:, user_id: @buyer.id, item_id: @item.id)
-    @item.update!(display: false)
+    @item.update!(purchased_at: Time.current)
+    @item.update!(txid: vote_tokens[1][0].txid)
+
+    @item
   end
 end

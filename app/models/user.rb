@@ -2,7 +2,8 @@ class User < ApplicationRecord
   belongs_to :wallet
   has_many :items
   has_many :vote_tokens
-  has_many :votes
+  has_many :votes, class_name: 'Vote', foreign_key: 'voter_id'
+  has_many :voteds, class_name: 'Vote', foreign_key: 'votee_id'
 
   validates :name, presence: true, length: { maximum: 255 }
 
@@ -25,7 +26,12 @@ class User < ApplicationRecord
   end
 
   # 得票数
-  def number_of_votes
-    votes.size
+  def number_of_voteds
+    voteds.pluck(:amount).sum
+  end
+
+  # 投票が多い順
+  def self.order_voted
+    includes(:voteds).sort { |a, b| b.voteds.size <=> a.voteds.size }
   end
 end

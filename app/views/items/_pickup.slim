@@ -1,0 +1,15 @@
+.row
+  - @pickup_items.slice(0..3).each do |item|
+    .col-md-3
+      .card.my-3
+        = image_tag "#{item.id}.jpg", height: 300, style: "object-fit: cover"
+        .card-body
+          h5.card-title
+            = item.title
+          p.card-text
+            = item.description.truncate(35) 
+          .card-text
+            = "RHA #{item.price.to_s(:delimited)}"
+          p.card-text
+            = item.user.name
+          = link_to '購入', orders_progress_path(item_id: item.id), class: 'btn btn-block btn-outline-primary btn-sm'

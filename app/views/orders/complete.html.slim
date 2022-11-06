@@ -1,0 +1,30 @@
+h2 購入完了
+.card.my-4.p-4
+  .row
+    .card-body
+      h5.card-title
+        = @item.title 
+      div[style="display: flex;"]
+        = image_tag "#{@item.id}.jpg", :style => "height: 13em; margin-right: 15px;"
+        table.table
+          tbody
+            tr
+              td[style="width: 20%;"]
+                | 価格
+              td[style="word-wrap: break-word;"]
+                = "RHA #{@item.price.to_s(:delimited)}"
+            tr
+              td[style="width: 20%;"]
+                | 購入トランザクション
+              td
+                = link_to @txid, transaction_path(@txid)
+            tr
+              td[style="width: 20%;"]
+                | 購入者トークン
+              td
+                = @item.vote_token.token_id
+            tr
+              td[style="width: 20%;"]
+                | 購入者トークン数量
+              td
+                = @item.vote_amount.to_s(:delimited)

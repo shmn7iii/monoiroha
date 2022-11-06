@@ -87,3 +87,44 @@ $ make rails/console
 # reset rails database
 $ make rails/reset
 ```
+
+## Deployment
+
+```bash
+# install dependency
+$ sudo apt install curl git make
+
+# install docker
+$ curl -fsSL https://get.docker.com -o get-docker.sh
+$ sudo sh get-docker.sh
+
+# clone
+$ git clone https://github.com/shmn7iii/monoiroha.git
+
+# set .env
+# if you use default tapyrusd container, auth-key is 'cUJN5RVzYWFoeY8rUztd47jzXCu1p57Ay8V7pqCzsBD3PEXN7Dd4'
+$ cat << EOF > .env
+RAILS_ENV=production
+TAPYRUS_RPC_SCHEMA=http
+TAPYRUS_RPC_HOST=tapyrusd
+TAPYRUS_RPC_PORT=12381
+TAPYRUS_RPC_USER=rpcuser
+TAPYRUS_RPC_PASSWORD=rpcpassword
+AUTHORITY_KEY=<auth-key>
+EOF
+
+# upload master.key
+$ sftp monoiroha
+Connected to monoiroha.
+sftp> cd monoiroha/config
+sftp> put master.key
+Uploading master.key to /home/ubuntu/monoiroha/config/master.key
+master.key                                                                                                          100%   32     1.1KB/s   00:00
+
+# setup container
+$ sudo make prod/docker/setup
+
+# setup systemd
+$ sudo cp monoiroha.service /etc/systemd/system/monoiroha.service
+$ sudo systemctl enable --now monoiroha
+```

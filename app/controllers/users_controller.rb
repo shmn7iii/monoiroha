@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  after_action :generate_block, only: %i[vote]
-
   def index
     @users = User.where.not(id: 1)
   end

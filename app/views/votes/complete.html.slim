@@ -1,0 +1,31 @@
+h2 投票完了
+
+.card.my-4
+  .card-body.px-5
+    table.table
+      tbody
+        tr
+          td[style="width: 15%;"]
+            | 投票先
+          td
+            = @vote.votee.name
+        tr
+          td[style="width: 15%;"]
+            | 投票者
+          td
+            = @vote.voter.name
+        tr
+          td[style="width: 15%;"]
+            | 投票トランザクション
+          td
+            = link_to @vote.txid, transaction_path(@vote.txid)
+        tr
+          td[style="width: 15%;"]
+            | 購入者トークン
+          td
+            = @vote.vote_token.token_id
+        tr
+          td[style="width: 15%;"]
+            | 投票量
+          td
+            = @vote.amount.to_s(:delimited)

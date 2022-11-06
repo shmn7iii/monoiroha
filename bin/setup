@@ -13,7 +13,7 @@ FileUtils.chdir APP_ROOT do
   system('bundle check') || system!('bundle install')
 
   puts "\n== Preparing database =="
-  system! 'bin/rails db:drop'
+  system! 'DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bin/rails db:drop'
   system! 'bin/rails db:create'
   system! 'bin/rails db:migrate'
   system! 'bin/rails ridgepole:apply'
