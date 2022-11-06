@@ -1,23 +1,23 @@
 Faker::Config.locale = :ja
 
-n = 0
-titles = ['ドロップイヤリング ブラウン',
-          '目玉焼きのピンブローチ',
-          'KYUSU (kuro) / 急須 (黒)',
-          '本革 ネームタグ オイルレザー',
-          'ハーブ石鹸',
-          '手編みベビーシューズ',
-          'クリスマスオーナメント',
-          'アウターポンチョ ニット',
-          'キャンバストートバッグ',
-          '手編みニット帽子',
-          'ラウンドプレート レッド',
-          'ストライプ ガラスコップ',
-          '金木犀のアロマキャンドル',
-          '木のヨーグルトスプーン',
-          '木製 花瓶',
-          'ハーブ×フルーツジャム'
-        ]
+titles = [
+  'ドロップイヤリング ブラウン',
+  '目玉焼きのピンブローチ',
+  'KYUSU (kuro) / 急須 (黒)',
+  '本革 ネームタグ オイルレザー',
+  'ハーブ石鹸',
+  '手編みベビーシューズ',
+  'クリスマスオーナメント',
+  'アウターポンチョ ニット',
+  'キャンバストートバッグ',
+  '手編みニット帽子',
+  'ラウンドプレート レッド',
+  'ストライプ ガラスコップ',
+  '金木犀のアロマキャンドル',
+  '木のヨーグルトスプーン',
+  '木製 花瓶',
+  'ハーブ×フルーツジャム'
+]
 
 descriptions = [
   'ガーネット色とゴールド色組合わせがゴージャスなイヤリングです。華やかなデザインが装いのワンポイントにお勧めです',
@@ -38,30 +38,40 @@ descriptions = [
   '【手作り ハーブ×フルーツジャム】トーストやヨーグルトはもちろん、アイスクリームのトッピングにも最適です！'
 ]
 
-g_wallet = Glueby::Wallet.create
-wallet = Wallet.create! { |u| u.id = g_wallet.id }
-name = '秋本 隼勢'
-user = User.create!(name:, wallet_id: wallet.id)
-Glueby::Internal::RPC.client.generatetoaddress(1, g_wallet.internal_wallet.receive_address, ENV['AUTHORITY_KEY'])
-
-12.times do |i|
+def create_user(name: nil)
   g_wallet = Glueby::Wallet.create
   wallet = Wallet.create! { |u| u.id = g_wallet.id }
-  name = Faker::Name.name
-  user = User.create!(name:, wallet_id: wallet.id)
   Glueby::Internal::RPC.client.generatetoaddress(1, g_wallet.internal_wallet.receive_address, ENV['AUTHORITY_KEY'])
-  if i < 8
-    2.times do
-      title = titles[n]
-      description = descriptions[n]
-      price = rand(5..300) * 100
-      Item.create!(user_id: user.id,
-                  title:,
-                  description:,
-                  price:)
-      n+=1
-    end
+  User.create!(name: name || Faker::Name.name, wallet_id: wallet.id)
+end
+
+# create default user
+create_user(name: '秋本 隼勢')
+
+# create users
+n = 0
+12.times do |i|
+  user = create_user
+  next if i >= 8
+
+  # create items
+  2.times do
+    Item.create!(user_id: user.id,
+                 title: titles[n],
+                 description: descriptions[n],
+                 price: rand(5..300) * 100)
+    n += 1
   end
 end
 
+# create dummy vote
+dummy_user = create_user(name: 'dummy')
+dummy_user.update!(id: 999)
+2.upto(13) do |i|
+  item = Item.create!(title: 'dummy', user: dummy_user, price: 1, txid: 'dummy', purchased_at: Time.current)
+  vote_token = VoteToken.create!(user: dummy_user, item:, token_id: 'dummy', amount: 1)
+  Vote.create!(votee: User.find(i), voter: dummy_user, vote_token:, amount: rand(1..30) * 10, txid: 'dummy')
+end
+
+# start block syncer
 `rails glueby:block_syncer:start`
