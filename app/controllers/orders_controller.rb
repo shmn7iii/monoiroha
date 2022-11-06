@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
     else
       redirect_to orders_complete_path(item_id: item.id)
     end
-  rescue ArgumentError
+  rescue StandardError
     flash[:danger] = 'Error!'
     if Rails.env.production?
       redirect_to 'https://monoiroha.shmn7iii.net/items', allow_other_host: true

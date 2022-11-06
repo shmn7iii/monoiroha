@@ -21,7 +21,7 @@ class VotesController < ApplicationController
     else
       redirect_to votes_complete_path(vote_id: vote.id)
     end
-  rescue ArgumentError
+  rescue StandardError
     flash[:danger] = 'Error!'
     if Rails.env.production?
       redirect_to 'https://monoiroha.shmn7iii.net/users', allow_other_host: true

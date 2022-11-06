@@ -7,7 +7,7 @@ class PurchaseItemService < BaseService
   end
 
   def call
-    raise ArgumentError if @item.nil? || @buyer.nil?
+    raise ArgumentError if @item.nil? || @buyer.nil? || @item.purchased_at.present?
 
     amount = @item.vote_amount
     vote_tokens = Glueby::Contract::Token.issue!(issuer: @buyer.glueby_wallet,
