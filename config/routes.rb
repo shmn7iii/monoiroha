@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[index]
   resources :vote_tokens, only: %i[index]
   resources :transactions, only: %i[show]
+  resources :reset, only: %i[index create]
 
   get  '/orders/progress', to: 'orders#progress'
   post '/orders/create',   to: 'orders#create'
