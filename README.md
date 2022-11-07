@@ -24,6 +24,8 @@ TAPYRUS_RPC_PORT=12381
 TAPYRUS_RPC_USER=rpcuser
 TAPYRUS_RPC_PASSWORD=rpcpassword
 AUTHORITY_KEY=<auth-key>
+BASIC_AUTH_USER=<user>
+BASIC_AUTH_PASSWORD=<pass>
 EOF
 
 # setup script for rails
@@ -57,6 +59,8 @@ TAPYRUS_RPC_PORT=12381
 TAPYRUS_RPC_USER=rpcuser
 TAPYRUS_RPC_PASSWORD=rpcpassword
 AUTHORITY_KEY=<auth-key>
+BASIC_AUTH_USER=<user>
+BASIC_AUTH_PASSWORD=<pass>
 EOF
 
 # create containers and run bin/setup
@@ -111,6 +115,8 @@ TAPYRUS_RPC_PORT=12381
 TAPYRUS_RPC_USER=rpcuser
 TAPYRUS_RPC_PASSWORD=rpcpassword
 AUTHORITY_KEY=<auth-key>
+BASIC_AUTH_USER=<user>
+BASIC_AUTH_PASSWORD=<pass>
 EOF
 
 # upload master.key
