@@ -9,7 +9,7 @@ h4 クリエイター総選挙
             h5.card-title
               = user.name
             p.card-text
-              = "得票数: #{user.number_of_voteds.to_s(:delimited)}"
+              = "得票数: #{user.number_of_voteds.to_fs(:delimited)}"
             - if user.voteds.where(voter_id: User.find(1).id).pluck(:amount).sum.zero?
 
             - else
