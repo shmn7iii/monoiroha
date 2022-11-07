@@ -10,6 +10,15 @@ class ApplicationController < ActionController::Base
     `rails glueby:block_syncer:start`
   end
 
+  # 本番環境対応リダイレクト
+  def safe_redirect_to(path)
+    if Rails.env.production?
+      redirect_to "https://monoiroha.shmn7iii.net#{path}", allow_other_host: true
+    else
+      redirect_to path
+    end
+  end
+
   def user_name
     User.find(1).name
   end
