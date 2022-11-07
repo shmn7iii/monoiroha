@@ -16,7 +16,7 @@ h4 商品一覧
             p.card-text
               = item.description.truncate(35) 
             .card-text
-              = "RHA #{item.price.to_s(:delimited)}"
+              = "RHA #{item.price.to_fs(:delimited)}"
             p.card-text
               = item.user.name
             - if item.purchased_at.nil?

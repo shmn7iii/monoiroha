@@ -12,7 +12,7 @@ h2 購入完了
               td[style="width: 20%;"]
                 | 価格
               td[style="word-wrap: break-word;"]
-                = "RHA #{@item.price.to_s(:delimited)}"
+                = "RHA #{@item.price.to_fs(:delimited)}"
             tr
               td[style="width: 20%;"]
                 | 購入トランザクション
@@ -27,4 +27,4 @@ h2 購入完了
               td[style="width: 20%;"]
                 | 購入者トークン数量
               td
-                = @item.vote_amount.to_s(:delimited)
+                = @item.vote_amount.to_fs(:delimited)
