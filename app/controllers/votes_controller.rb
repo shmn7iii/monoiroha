@@ -15,19 +15,10 @@ class VotesController < ApplicationController
 
     @address = voter.glueby_wallet.internal_wallet.receive_address
 
-    # 本番環境用リダイレクト
-    if Rails.env.production?
-      redirect_to "https://monoiroha.shmn7iii.net/votes/complete?vote_id=#{@vote.id}", allow_other_host: true
-    else
-      redirect_to votes_complete_path(vote_id: @vote.id)
-    end
+    safe_redirect_to votes_complete_path(vote_id: @vote.id)
   rescue StandardError
     flash[:danger] = 'Error!'
-    if Rails.env.production?
-      redirect_to 'https://monoiroha.shmn7iii.net/users', allow_other_host: true
-    else
-      redirect_to users_path
-    end
+    safe_redirect_to users_path
   end
 
   def complete
