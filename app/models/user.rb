@@ -32,6 +32,6 @@ class User < ApplicationRecord
 
   # 投票が多い順
   def self.order_voted
-    includes(:voteds).sort { |a, b| b.voteds.size <=> a.voteds.size }
+    includes(:voteds).sort { |a, b| b.voteds.sum(:amount) <=> a.voteds.sum(:amount) }
   end
 end
