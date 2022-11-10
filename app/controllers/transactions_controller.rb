@@ -6,6 +6,6 @@ class TransactionsController < ApplicationController
     @transaction_json = JSON.pretty_generate(@transaction.to_h)
   rescue ArgumentError, Tapyrus::RPC::Error
     flash[:danger] = 'No transactions found :('
-    safe_redirect_to root_path
+    redirect_to root_path
   end
 end

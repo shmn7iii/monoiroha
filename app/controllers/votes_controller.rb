@@ -15,10 +15,10 @@ class VotesController < ApplicationController
 
     @address = voter.glueby_wallet.internal_wallet.receive_address
 
-    safe_redirect_to votes_complete_path(vote_id: @vote.id)
+    redirect_to votes_complete_path(vote_id: @vote.id)
   rescue StandardError
     flash[:danger] = 'Error!'
-    safe_redirect_to users_path
+    redirect_to users_path
   end
 
   def complete

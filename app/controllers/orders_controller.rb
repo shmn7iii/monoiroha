@@ -11,10 +11,10 @@ class OrdersController < ApplicationController
 
     @address = buyer.glueby_wallet.internal_wallet.receive_address
 
-    safe_redirect_to orders_complete_path(item_id: @item.id)
+    redirect_to orders_complete_path(item_id: @item.id)
   rescue StandardError
     flash[:danger] = 'Error!'
-    safe_redirect_to items_path
+    redirect_to items_path
   end
 
   def complete
