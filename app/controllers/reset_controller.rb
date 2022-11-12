@@ -12,6 +12,6 @@ class ResetController < ApplicationController
     `bin/rails restart`
 
     flash[:success] = 'サーバーの再起動中です。しばらくしてからページをリロードしてください。'
-    safe_redirect_to root_path
+    redirect_to root_path
   end
 end
