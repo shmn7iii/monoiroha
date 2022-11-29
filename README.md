@@ -89,7 +89,8 @@ BASIC_AUTH_PASSWORD=<pass>
 EOF
 
 # upload master.key
-$ sftp monoiroha
+[local]$ cd ./config
+[local]$ sftp monoiroha
 Connected to monoiroha.
 sftp> cd monoiroha/config
 sftp> put master.key

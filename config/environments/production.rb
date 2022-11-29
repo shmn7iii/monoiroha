@@ -1,8 +1,8 @@
 require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
+  config.hosts << '157.13.61.51'
   config.hosts << 'monoiroha.shmn7iii.net'
-  config.hosts << 'ec2-13-113-114-155.ap-northeast-1.compute.amazonaws.com'
 
   config.action_controller.allow_forgery_protection = false
 
