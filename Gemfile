@@ -16,7 +16,7 @@ gem 'rails-erd'
 gem 'ridgepole'
 gem 'slim'
 gem 'sprockets-rails'
-gem 'sqlite3', '~> 1.4'
+gem 'sqlite3', '~> 1.5'
 gem 'stimulus-rails'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
