@@ -7,6 +7,8 @@
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.1",
     "bootstrap-icons": "^1.9.1",
+    "chart.js": "^4.0.1",
+    "chartkick": "^4.2.0",
     "esbuild": "^0.15.7",
     "sass": "^1.54.9"
   },

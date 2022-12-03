@@ -5,6 +5,8 @@ ruby '3.1.2'
 gem 'rails', '~> 7.0.4'
 
 gem 'bootsnap', require: false
+gem "chartkick"
+gem 'chartable'
 gem 'cssbundling-rails'
 gem 'dotenv-rails'
 gem 'faker'
