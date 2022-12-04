@@ -1,0 +1,42 @@
+.d-flex.justify-content-between.align-items-start
+  h4
+    = @user.name
+  = link_to '投票', votes_progress_path(votee_id: @user.id), class: 'btn btn-block btn-outline-primary btn-sm'
+
+.row
+  .col
+    h5.mt-3
+      | 得票状況
+    .card
+      .card-body
+        ul.list-group.list-group-flush
+          - @voteds_hash.each do |voted|
+            li.list-group-item.list-group-horizontal.d-flex.justify-content-between.align-items-start
+              p
+                = voted[0]
+              p
+                = "#{voted[1].to_fs(:delimited)}票"
+        = pie_chart @voteds_hash
+
+  .col
+    h5.mt-3
+      | 出品中のアイテム
+    - if @items.empty?
+      | なし
+    - @items.each do |item|
+      .card.mb-2
+        .row.g-0
+          .col-md-4
+            = image_tag "#{item.id}.jpg", height:200, width: 200, style: "object-fit: cover"
+          .col-md-8.
+            .card-body
+              p.card-title
+                = item.title
+              p.card-text
+                = item.description.truncate(35)
+              .card-text
+                = "RHA #{item.price.to_fs(:delimited)}"
+              - if item.purchased_at.nil?
+                = link_to '購入', orders_progress_path(item_id: item.id), class: 'btn btn-block btn-outline-primary btn-sm'
+              - else
+                .btn.btn-outline-secondary.btn-block.btn-sm.disabled 購入済み

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'items#index'
 
   resources :items, only: %i[index]
-  resources :users, only: %i[index]
+  resources :users, only: %i[index show]
   resources :vote_tokens, only: %i[index]
   resources :transactions, only: %i[show]
   resources :reset, only: %i[index create]

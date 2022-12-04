@@ -1,18 +1,25 @@
-h4 クリエイター総選挙
+h4.mb-3
+ | クリエイター総選挙
 
-- @users.each_slice(4) do |slice_users|
-  .row.my-4
-    - slice_users.each do |user|
-      .col-md-3
-        .card
-          .card-body
-            h5.card-title
+.row
+  .col-md-8
+    ol.list-group.list-group-numbered.list-group-flush
+      - @users.each do |user|
+        = link_to user, class: 'list-group-item d-flex justify-content-between align-items-start'
+          .ms-2.me-auto
+            h4.fw-bold
               = user.name
-            p.card-text
-              = "得票数: #{user.number_of_voteds.to_fs(:delimited)}"
-            - if user.voteds.where(voter_id: User.find(1).id).pluck(:amount).sum.zero?
+            h5
+              = "#{user.number_of_voteds.to_fs(:delimited)}票"
+          - user.voteds.each do |voted|
+            span.badge.bg-success.rounded-pill.me-2
+              = voted.voter.name[0]
 
-            - else
-              p.card-text
-                = "#{user.voteds.where(voter_id: User.find(1).id).pluck(:amount).sum}票投票しました"
-            = link_to '投票', votes_progress_path(votee_id: user.id), class: 'btn btn-block btn-outline-primary btn-sm'
+  .col-md-4
+    .card.card-body
+      strong.card-title
+        | 投票の仕方
+      .card-text
+        | 1. 商品を購入します。購入額に応じた購入者トークンが付与されます。
+      .card-text
+        | 2. 購入者トークンで応援したいクリエイターに投票します。投票分のトークンはクリエイターに送付されます。

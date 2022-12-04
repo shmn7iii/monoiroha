@@ -46,7 +46,7 @@ def create_user(name: nil)
 end
 
 # create default user
-create_user(name: '秋本 隼勢')
+create_user(name: '嶋村 颯人')
 
 # create users
 n = 0
@@ -67,10 +67,13 @@ end
 # create dummy vote
 dummy_user = create_user(name: 'dummy')
 dummy_user.update!(id: 999)
-2.upto(13) do |i|
-  item = Item.create!(title: 'dummy', user: dummy_user, price: 1, txid: 'dummy', purchased_at: Time.current)
-  vote_token = VoteToken.create!(user: dummy_user, item:, token_id: 'dummy', amount: 1)
-  Vote.create!(votee: User.find(i), voter: dummy_user, vote_token:, amount: rand(1..30), txid: 'dummy')
+users = User.where.not(id: 1).where.not(id: 999)
+3.times do
+  users.each do |user|
+    item = Item.create!(title: 'dummy', user: dummy_user, price: 1, txid: 'dummy', purchased_at: Time.current)
+    vote_token = VoteToken.create!(user: user, item:, token_id: 'dummy', amount: 1)
+    Vote.create!(votee: users.where.not(id: user.id).order("RANDOM()").first, voter: user, vote_token:, amount: rand(1..30), txid: 'dummy')
+  end
 end
 
 # start block syncer
